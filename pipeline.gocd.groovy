@@ -1,6 +1,6 @@
 import cd.go.contrib.plugins.configrepo.groovy.dsl.*
 
-def branches = ['master', 'release', 'test']
+def branches = ['master', 'release']
 
 def buildStage = {
     new Stage("Build", {
