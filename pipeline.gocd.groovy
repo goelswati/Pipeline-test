@@ -42,8 +42,8 @@ GoCD.script { GoCD buildScript ->
 
     pipelines {
         branches.each { String branch ->
-            pipeline("docs.gocd.org-${branch}") {
-                group = "gocd-help-docs-${branch}"
+            pipeline("pipeline-test${branch == "master" ? '' : "-"+branch}") {
+                group = "pipeline-test-${branch}"
                 materials {
                     git {
                         url = 'http://github.com/goelswati/Pipeline-test.git'
