@@ -20,13 +20,13 @@ def buildStage = {
     })
 }
 
-def pushToGHPages(GString branch) {
+def pushToGHPages(String branch) {
     new Stage("PushToGHPages", {
         cleanWorkingDir = true
         jobs {
             job("PushToGHPages") {
                 tasks {
-                    if (branch == 'master') {
+                    /*if (branch == 'master') {
                         bash {
                             commandString = "echo job PushToGHPages task1 with branch master"
                         }
@@ -34,7 +34,10 @@ def pushToGHPages(GString branch) {
                         bash {
                             commandString = "echo job PushToGHPages task1 with branch release"
                         }
-                    }    
+                    }  */  
+                    bash {
+                        commandString = "echo job PushToGHPages task2 ${branch}"
+                    }
                     bash {
                         commandString = "echo job PushToGHPages task2"
                     }
