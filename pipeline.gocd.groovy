@@ -63,7 +63,7 @@ GoCD.script { GoCD buildScript ->
                 stages {
                     add(buildStage())
                     add(pushToGHPages())
-                    stage("PushToGHPages") {
+                    stage("echoBranch") {
         cleanWorkingDir = true
         jobs {
             job("echo branch") {
