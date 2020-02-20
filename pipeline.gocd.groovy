@@ -20,14 +20,14 @@ def build = {
     })
 }
 
-def publish = {
+def publish(String branch) {
     new Stage("publish", {
         cleanWorkingDir = true
         jobs {
             job("publish") {
                 tasks {
                     bash {
-                        commandString = "echo job PushToGHPages task2"
+                        commandString = "echo job PushToGHPages task1 ${branch}"
                     }
                     bash {
                         commandString = "echo job PushToGHPages task2"
@@ -53,7 +53,7 @@ GoCD.script { GoCD buildScript ->
                 }
                 stages {
                     add(build())
-                    add(publish())
+                    add(publish("${branch}"))
                 }
             }
         }
