@@ -66,7 +66,7 @@ GoCD.script { GoCD buildScript ->
                     stage("echoBranch") {
         cleanWorkingDir = true
         jobs {
-            job("echo branch") {
+            job("echoBranch") {
                 tasks { 
                     bash {
                         commandString = "echo branch ${branch}"
