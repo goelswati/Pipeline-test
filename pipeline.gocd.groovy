@@ -20,7 +20,7 @@ def buildStage = {
     })
 }
 
-def pushToGHPages(String branch) {
+def pushToGHPages = {
     new Stage("PushToGHPages", {
         cleanWorkingDir = true
         jobs {
@@ -36,7 +36,7 @@ def pushToGHPages(String branch) {
                         }
                     }  */  
                     bash {
-                        commandString = "echo job PushToGHPages task2 ${branch}"
+                        commandString = "echo job PushToGHPages task2"
                     }
                     bash {
                         commandString = "echo job PushToGHPages task2"
@@ -62,7 +62,22 @@ GoCD.script { GoCD buildScript ->
                 }
                 stages {
                     add(buildStage())
-                    add(pushToGHPages(${branch}.toString()))
+                    add(pushToGHPages(${branch}))
+                    stage("PushToGHPages") {
+        cleanWorkingDir = true
+        jobs {
+            job("echo branch") {
+                tasks { 
+                    bash {
+                        commandString = "echo branch ${branch}"
+                    }
+                    bash {
+                        commandString = "echo branch tostring ${branch}.toString()"
+                    }
+                }
+            }
+        }
+    }
                 }
             }
         }
