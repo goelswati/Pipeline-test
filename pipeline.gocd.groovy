@@ -62,7 +62,7 @@ GoCD.script { GoCD buildScript ->
                 }
                 stages {
                     add(buildStage())
-                    add(pushToGHPages("${branch}"))
+                    add(pushToGHPages(${branch}.toString()))
                 }
             }
         }
