@@ -47,7 +47,7 @@ GoCD.script { GoCD buildScript ->
                 materials {
                     git {
                         url = 'http://github.com/goelswati/Pipeline-test.git'
-                        branch = "release-${branch}"
+                        branch = "${branch}"
                         shallowClone = true
                     }
                 }
