@@ -26,7 +26,7 @@ def pushToGHPages = (branch) {
         jobs {
             job("PushToGHPages") {
                 tasks {
-                    if (branch == 'master) {
+                    if (branch == 'master') {
                         bash {
                             commandString = "echo job PushToGHPages task1 with branch master"
                         }
