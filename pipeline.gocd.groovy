@@ -41,7 +41,7 @@ def pushToGHPages = {
 GoCD.script { GoCD buildScript ->
 
     pipelines {
-        branches.reverse().each { String branch ->
+        branches.each { String branch ->
             pipeline("docs.gocd.org-${branch}") {
                 group = "gocd-help-docs-${branch}"
                 materials {
