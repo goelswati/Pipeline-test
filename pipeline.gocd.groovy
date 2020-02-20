@@ -20,7 +20,7 @@ def buildStage = {
     })
 }
 
-def pushToGHPages(String branch) {
+def pushToGHPages(GString branch) {
     new Stage("PushToGHPages", {
         cleanWorkingDir = true
         jobs {
