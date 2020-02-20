@@ -2,11 +2,11 @@ import cd.go.contrib.plugins.configrepo.groovy.dsl.*
 
 def branches = ['master', 'release']
 
-def buildStage = {
+def build = {
     new Stage("Build", {
         cleanWorkingDir = true
         jobs {
-            job("BuildWebsite") {
+            job("build") {
                 tasks {
                     bash {
                         commandString = "echo job BuildWebsite task1"
@@ -20,21 +20,12 @@ def buildStage = {
     })
 }
 
-def pushToGHPages = {
-    new Stage("PushToGHPages", {
+def publish = {
+    new Stage("publish", {
         cleanWorkingDir = true
         jobs {
-            job("PushToGHPages") {
+            job("publish") {
                 tasks {
-                    /*if (branch == 'master') {
-                        bash {
-                            commandString = "echo job PushToGHPages task1 with branch master"
-                        }
-                    } else {
-                        bash {
-                            commandString = "echo job PushToGHPages task1 with branch release"
-                        }
-                    }  */  
                     bash {
                         commandString = "echo job PushToGHPages task2"
                     }
@@ -61,31 +52,10 @@ GoCD.script { GoCD buildScript ->
                     }
                 }
                 stages {
-                    add(buildStage())
-                    add(pushToGHPages())
-                    stage("echoBranch") {
-        cleanWorkingDir = true
-        jobs {
-            job("echoBranch") {
-                tasks { 
-                    bash {
-                        commandString = "echo branch ${branch}"
-                    }
-                    bash {
-                        commandString = "echo branch tostring ${branch}.toString()"
-                    }
+                    add(build())
+                    add(publish())
                 }
             }
         }
     }
-                }
-            }
-        }
-    }
-
-    /*environments {
-        environment("docs-website") {
-            pipelines = buildScript.pipelines.getNames().findAll { !it.toUpperCase().contains('PR') }
-        }
-    }*/
 }
