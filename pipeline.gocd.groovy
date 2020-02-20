@@ -20,15 +20,21 @@ def buildStage = {
     })
 }
 
-def pushToGHPages = {
+def pushToGHPages = (branch) {
     new Stage("PushToGHPages", {
         cleanWorkingDir = true
         jobs {
             job("PushToGHPages") {
                 tasks {
-                    bash {
-                        commandString = "echo job PushToGHPages task1"
-                    }
+                    if (branch == 'master) {
+                        bash {
+                            commandString = "echo job PushToGHPages task1 with branch master"
+                        }
+                    } else {
+                        bash {
+                            commandString = "echo job PushToGHPages task1 with branch release"
+                        }
+                    }    
                     bash {
                         commandString = "echo job PushToGHPages task2"
                     }
@@ -53,7 +59,7 @@ GoCD.script { GoCD buildScript ->
                 }
                 stages {
                     add(buildStage())
-                    add(pushToGHPages())
+                    add(pushToGHPages(branch))
                 }
             }
         }
