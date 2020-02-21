@@ -9,10 +9,10 @@ def build = {
             job("build") {
                 tasks {
                     bash {
-                        commandString = "echo job BuildWebsite task1"
+                        commandString = "echo job build task1"
                     }
                     bash {
-                        commandString = "echo job BuildWebsite task2"
+                        commandString = "echo job build task2"
                     }
                 }
             }
@@ -27,10 +27,10 @@ def publish = {
             job("publish") {
                 tasks {
                     bash {
-                        commandString = "echo job PushToGHPages task1 ${branch}"
+                        commandString = "echo job publish task1"
                     }
                     bash {
-                        commandString = "echo job PushToGHPages task2"
+                        commandString = "echo job publish task2"
                     }
                 }
             }
