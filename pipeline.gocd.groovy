@@ -20,7 +20,7 @@ def build = {
     })
 }
 
-def publish(String branch) {
+def publish(GString branch) {
     new Stage("publish", {
         cleanWorkingDir = true
         jobs {
@@ -56,7 +56,7 @@ GoCD.script { GoCD buildScript ->
                 }
                 stages {
                     add(build())
-                    add(publish(branch))
+                    add(publish("${branch}"))
                 }
             }
         }
