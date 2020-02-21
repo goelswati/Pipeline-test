@@ -20,7 +20,7 @@ def build = {
     })
 }
 
-def publish(GString branch) {
+def publish(String branch) {
     new Stage("publish", {
         cleanWorkingDir = true
         jobs {
@@ -50,13 +50,13 @@ GoCD.script { GoCD buildScript ->
                 materials {
                     git {
                         url = 'http://github.com/goelswati/Pipeline-test.git'
-                        branch = "${branch}"
+                        branch = branch
                         shallowClone = true
                     }
                 }
                 stages {
                     add(build())
-                    add(publish("${branch}"))
+                    add(publish(branch))
                 }
             }
         }
