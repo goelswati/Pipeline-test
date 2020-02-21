@@ -56,7 +56,7 @@ GoCD.script { GoCD buildScript ->
                 }
                 stages {
                     add(build())
-                    add(publish(${branch}))
+                    add(publish("${branch}"))
                 }
             }
         }
