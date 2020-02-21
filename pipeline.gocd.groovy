@@ -20,7 +20,7 @@ def build = {
     })
 }
 
-def publish(String branch) {
+def publish(GString branch) {
     new Stage("publish", {
         cleanWorkingDir = true
         jobs {
