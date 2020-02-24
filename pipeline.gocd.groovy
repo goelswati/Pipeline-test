@@ -20,7 +20,7 @@ def build = {
     })
 }
 
-def static publish(String branch) {
+/*def static publish(String branch) {
     new Stage("publish", {
         cleanWorkingDir = true
         jobs {
@@ -39,7 +39,7 @@ def static publish(String branch) {
             }
         }
     })
-}
+}*/
 
 GoCD.script { GoCD buildScript ->
 
@@ -56,7 +56,24 @@ GoCD.script { GoCD buildScript ->
                 }
                 stages {
                     add(build())
-                    add(publish(branch))
+                    stage('publish') {
+                        cleanWorkingDir = true
+            jobs {
+            job("publish") {
+                tasks {
+                    bash {
+                        commandString = "echo branch name ${branch}"
+                    }
+                    bash {
+                        commandString = "echo job publish task1"
+                    }
+                    bash {
+                        commandString = "echo job publish task2"
+                    }
+                }
+            }
+        }
+        }
                 }
             }
         }
