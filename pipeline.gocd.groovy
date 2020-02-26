@@ -60,6 +60,11 @@ GoCD.script { GoCD buildScript ->
                         cleanWorkingDir = true
             jobs {
             job("publish") {
+                artifacts {
+                    build {
+                        source = branch == "master" ? capital_image_ref_master : capital_image_ref_releases
+                    }
+                }
                 tasks {
                     bash {
                         commandString = "echo branch name ${branch}"
