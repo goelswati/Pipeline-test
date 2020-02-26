@@ -59,7 +59,7 @@ GoCD.script { GoCD buildScript ->
                     stage('publish') {
                         cleanWorkingDir = true
                         approval {
-                            type = branch == "master" ? '' : 'manual'
+                            type = branch == "master" ? 'success' : 'manual'
                         }
             jobs {
             job("publish") {
