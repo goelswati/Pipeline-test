@@ -58,6 +58,9 @@ GoCD.script { GoCD buildScript ->
                     add(build())
                     stage('publish') {
                         cleanWorkingDir = true
+                        approval {
+                            type = branch == "master" ? '' : 'manual'
+                        }
             jobs {
             job("publish") {
                 artifacts {
